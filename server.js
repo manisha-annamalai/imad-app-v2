@@ -8,11 +8,10 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('~/verse-one', function (req, res) {
-  /*res.sendFile(path.join(__dirname, 'ui', 'verse-one.html'));*/
-  print('MANSA IS A BAD GIRL!!!!');
+app.get('/verseOne', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'verse-one.html'));
 });
-app.get('~/verse-two', function (req, res) {
+app.get('/verseTwo', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'verse-two.html'));
 });
 app.get('/ui/style.css', function (req, res) {
