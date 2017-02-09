@@ -9,7 +9,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 app.get('/verse-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'verse-one.html'));
+  /*res.sendFile(path.join(__dirname, 'ui', 'verse-one.html'));*/
+  `MANSA IS A BAD GIRL!!!!`
 });
 app.get('/verse-two', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'verse-two.html'));
