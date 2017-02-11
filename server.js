@@ -78,10 +78,6 @@ app.get('/:verseName', function (req, res) {
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
-
-app.get('/ui/myimg.JPG', function (req, res) {
-    res.sendFile(path.join(__dirname, 'ui', 'myimg.JPG'));
-});
 app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
