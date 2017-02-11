@@ -3,7 +3,9 @@ var morgan = require('morgan');
 var path = require('path');
 var app = express();
 app.use(morgan('combined'));
-var verse-one = {
+var pages = 
+{
+    'verse-one' :{
     title:'verse one',
     heading: 'verse of the day',
     date: '9th feb 2017',
@@ -12,8 +14,19 @@ var verse-one = {
             </p>
             <p>
                 "For as the heavens are higher than the earth, So are My ways higher than your ways And My thoughts than your thoughts."
+            </p>`},
+    'verse-two' : {
+         title:'verse two',
+         heading: 'verse of the day',
+         date: '10th feb 2017',
+         content: ` <p>
+                Stay blessed..
+            </p>
+            <p>
+                "For I am the way, the truth and the life."
             </p>`
-      };
+                },
+};
 
 function createTemplate (data){
 var title=data.title;
@@ -51,21 +64,18 @@ var htmlTemplate= `
 `;
 return htmlTemplate;
 }
-
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/verse-one', function (req, res) {
-    res.send(createTemplate(verse-one));
+//verseName==verse-one
+//pages[verseName]=={} content of the object for verse one
+var verseName = req.params.verseName;
+app.get('/:verseName', function (req, res) {
+    res.send(createTemplate(pages[verseName]));
 });
-app.get('/verse-two', function (req, res) {
-     res.sendFile(path.join(__dirname, 'ui', 'verse-two.html'));
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
-
-
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {
   console.log(`IMAD course app listening on port ${port}!`);
