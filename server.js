@@ -34,43 +34,45 @@ var heading=data.heading;
 var date=data.date;
 var content=data.content;
 var htmlTemplate= `
-<!doctype html>
-<html>
-    <head>
-        <title>
-           ${title}
-        </title>
-  <meta name="viewport" content="width-device-width,initial-scale=1"/>
-   <link href="/ui/style.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="container">
-        <div>
-            <a href="/">Home</a>
-        </div>
-        <hr/>
-        <h3>
-            ${heading}
-        </h3>
-        <div>
-            ${date}
-        </div>
-        <div>
-           ${content}
-        </div>
-        </div>
-    </body>
-</html>
+        <!doctype html>
+        <html>
+            <head>
+                <title>
+                   ${title}
+                </title>
+                <meta name="viewport" content="width=device-width",initial-scale=1"/>
+                <link href="/ui/style.css" rel="stylesheet" />
+            </head>
+            <body>
+                <div class="container">
+                    <div>
+                        <a href="/">Home</a>
+                    </div>
+                    <hr/>
+                    <h3>
+                        ${heading}
+                    </h3>
+                    <div>
+                        ${date}
+                    </div>
+                    <div>
+                        ${content}
+                    </div>
+                </div>
+            </body>
+        </html>
 `;
 return htmlTemplate;
 }
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-//verseName==verse-one
-//pages[verseName]=={} content of the object for verse one
-var verseName = req.params.verseName;
+
+//verseName == verse-one
+//pages[verseName] == content of verse-one
+
 app.get('/:verseName', function (req, res) {
+    var verseName=req.params.verseName;
     res.send(createTemplate(pages[verseName]));
 });
 app.get('/ui/style.css', function (req, res) {
