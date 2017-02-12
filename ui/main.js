@@ -12,9 +12,9 @@ button.onclick = function(){
                 var span = document.getElementById('count');
                 span.innerHTML = counter.toString();
             }
-    }
+        }
     //not done yet
-};
+    };
 //make the request
 request.open('GET', 'http://manisha-annamalai.imad.hasura-app.io/counter', true);
 request.send(null);
