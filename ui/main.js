@@ -20,7 +20,7 @@ request.open('GET', 'http://manisha-annamalai.imad.hasura-app.io/counter', true)
 request.send(null);
 };
 //submit name
-var submit = document.getElementById('submit-btn');
+var submit = document.getElementById('submit_btn');
 submit.onclick = function () {
     //create a request object
     var request = new XMLHttpRequest();
