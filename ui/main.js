@@ -16,6 +16,6 @@ button.onclick = function(){
     //not done yet
 };
 //make the request
-request.open('GET', 'http://manisha-annamalai.imad.hausura-app.io/counter', true);
+request.open('GET', 'http://manisha-annamalai.imad.hasura-app.io/counter', true);
 request.send(null);
 };
