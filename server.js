@@ -72,9 +72,16 @@ app.get('/counter', function (req,res){
     counter = counter + 1 ;
     res.send(counter.toString());
 });
+var names= [];
+app.get('/submit-name', function(req, res) { // /submit-name?name=xxxx
+//get the name from the request
+var name= req.query.name;
+names.push(name);
+//JSON : javascript object notation
+res.send(JSON.stringify(names));
+});
 //verseName == verse-one
 //pages[verseName] == content of verse-one
-
 app.get('/:verseName', function (req, res) {
     var verseName=req.params.verseName;
     res.send(createTemplate(pages[verseName]));
