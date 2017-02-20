@@ -26,12 +26,13 @@ submit.onclick = function () {
     var request = new XMLHttpRequest();
     //capture the response and store it in a variable
     request.onreadystatechange = function (){
-        if(request.readyState=== XMLHttpRequest.DONE){
+        if(request.readyState === XMLHttpRequest.DONE){
             //take some action
-            if(request.status===200){
+            if(request.status === 200){
                 //capture a list of names and render it as a list
-                var name = request.responseText;
-                var names=JSON.parse(name);
+                var names = request.responseText;
+                names=JSON.parse(names);
+                console.log(names);
                 var list= '';
                 for(var i=0; i<names.length; i++){
                     list += '<li>' + names[i] + '</li>';
