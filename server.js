@@ -102,9 +102,20 @@ app.get('/test-db', function(req,res){
 });
 //verseName == verse-one
 //pages[verseName] == content of verse-one
-app.get('/:verseName', function (req, res) {
-    var verseName=req.params.verseName;
-    res.send(createTemplate(pages[verseName]));
+app.get('/pages/:verseName', function (req, res) {
+    //select * from verse where title = '\'; delete where a=\'asdf.'
+    pool.query('SELECT * FROM verse WHERE title=$1', [req.params.verseName], function(err,result){
+        if(err){
+            res.status(500).send(err.toString());
+        } else {
+            if(result.rows.length===0){
+                res.status(404).send('verse not found');
+            } else {
+                var verseData = result.rows[0];
+                res.send(createTemplate (articleData));
+            }
+        }
+    });
 });
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
