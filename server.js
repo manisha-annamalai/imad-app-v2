@@ -1,6 +1,14 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
+var Pool = require('pg').Pool;
+var config={
+    user:'manisha-annamalai',
+    database:'manisha-annamalai',
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+    password:process.env.DB_PASSWORD
+};
 var app = express();
 app.use(morgan('combined'));
 var pages = 
@@ -80,6 +88,17 @@ var name= req.query.name;
 names.push(name);
 //JSON : javascript object notation
 res.send(JSON.stringify(names));
+});
+var pool = new Pool(config);
+app.get('/test-db', function(req,res){
+    //make a select req
+    //return a res with the results
+    pool.query('SELECT * FROM test', funtion (err,result) {
+        if(err) {
+            res.status(500).send(err.toString());}
+        else {
+            res.send(JSON.stringify(result.rows));}
+    });
 });
 //verseName == verse-one
 //pages[verseName] == content of verse-one
