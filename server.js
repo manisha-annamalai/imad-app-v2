@@ -104,7 +104,7 @@ app.get('/test-db', function(req,res){
 //pages[verseName] == content of verse-one
 app.get('/pages/:verseName', function (req, res) {
     //select * from verse where title = '\'; delete where a=\'asdf.'
-    pool.query("SELECT * FROM verse WHERE title=$1", [req.params.verseName], function(err,result){
+    pool.query("SELECT * FROM verse WHERE title = $1", [req.params.verseName], function(err,result){
         if(err){
             res.status(500).send(err.toString());
         } else {
