@@ -112,7 +112,7 @@ app.get('/pages/:verseName', function (req, res) {
                 res.status(404).send('verse not found');
             } else {
                 var verseData = result.rows[0];
-                res.send(createTemplate (articleData));
+                res.send(createTemplate (verseData));
             }
         }
     });
